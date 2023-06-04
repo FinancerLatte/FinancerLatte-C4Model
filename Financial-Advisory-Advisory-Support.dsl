@@ -11,22 +11,16 @@ workspace {
         group "${ORGANIZATION_NAME} - ${BUSINESS_UNIT}" {
             // Actors/Roles
             adviser     = person "Adviser"
-            user        = person "User"
+            client      = person "Client"
             visitor     = person "Visitor"
 
             // Software Platform
             platform = softwareSystem "Financial advisory platform" {
                 // Containers
-                adviserApp    = container "Adviser App" "Provides services in advisory processes" "NestJs"
-                userApp       = container "User App" "Allows user to receive financial advice" "NestJs"
-                mobile        = container "Platform Mobile" "Access to features via mobile device" "Flutter"
-                webApp        = container "Platform Website" "Web interface for accessing features" "VueJs"
-                webAPI        = container "Platform API" "API for application interaction" "NestJs"
-                landingPage   = container "Landing Page" "Home page for visitors" "Bootstrap"
             }
              // Relationships Section
             adviser     -> platform "Uses"
-            user        -> platform "Uses"
+            client        -> platform "Client"
             visitor     -> platform "Visits"
             
 
@@ -41,9 +35,11 @@ workspace {
             include *
             autoLayout
         }
-
-        
-
+        container platform {
+            //Roles included
+            include visitor client adviser
+            autoLayout
+        }
         theme default
     }
 }
