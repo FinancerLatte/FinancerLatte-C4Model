@@ -11,7 +11,7 @@ workspace {
         group "${ORGANIZATION_NAME} - ${BUSINESS_UNIT}" {
             // Actors/Roles
             adviser     = person "Adviser"
-            client      = person "Client"
+            customer    = person "Customer"
             visitor     = person "Visitor"
 
             // Software Platform
@@ -20,11 +20,8 @@ workspace {
             }
              // Relationships Section
             adviser     -> platform "Uses"
-            client        -> platform "Client"
+            customer    -> platform "Customer"
             visitor     -> platform "Visits"
-            
-
-           
         }
     }
 
@@ -33,11 +30,6 @@ workspace {
         // System Context
         systemContext platform {
             include *
-            autoLayout
-        }
-        container platform {
-            //Roles included
-            include visitor client adviser
             autoLayout
         }
         theme default
